@@ -14,6 +14,15 @@ CREATE TABLE Supplier(
     s_email varchar(19) NOT NULL,
     s_phone char(12) NULL
 );
+--order table
+CREATE TABLE Orders(
+    o_orderkey INT primary key,
+    o_custkey INT not null,
+    o_totalcost decimal(5,2) NOT NULL,
+    o_orderdate char(10),
+    o_orderstatus char(2),
+    FOREIGN KEY (o_custkey) REFERENCES Orders(o_custkey)
+);
 --populating customers
 INSERT INTO Customer(c_custkey,c_name,c_address,c_email,c_phone)
 VALUES(1,"Joe Cool","kjasdlkjsal","jcool@gmail.com","209-154-2692"),
@@ -38,6 +47,18 @@ VALUES(1,"Kate Spade","askjdjlasd;aks","kspade@gmail.com","546-514-1521"),
       (8,"Honii Clover","asicoup","hclover@gmail.com","894-526-8997"),
       (9,"Asta Bulls","qowihdhfj","abulls@gmail.com","789-123-7077"),
       (10,"Star Nebula","Psdlkv qowiu","snebula@gmail.com","545-445-7899");
+--populating orders
+--NOTE: ER = en route, W = warehouse, D = delivered
+INSERT INTO Orders(o_orderkey,o_custkey,o_totalcost,o_orderdate,o_orderstatus)
+VALUES(1,6,4550.63,"07-15-2020","ER"),
+      (2,8,54989.22,"11-9-2020","W"),
+      (3,4,1648.54,"03-31-2020","D"),
+      (4,10,1442.35,"10-2-2020","ER"),
+      (5,2,4545.11,"11-1-2020","W"),
+      (6,3,69983.87,"08-6-2020","W"),
+      (7,5,2165.21,"03-5-2020","D"),
+      (8,9,6356.32,"03-10-2020","D"),
+      (9,7,8897.15,"08-1-2020","D"),
+      (10,1,21854.26,"10-20-2020","ER");
 
 
-        
