@@ -47,7 +47,7 @@ CREATE TABLE ProductQuantity(
 
 --lineitem table--
 CREATE TABLE Lineitem(
-    l_orderkey       INT NOT NULL,
+   l_orderkey       INT NOT NULL,
    l_supplykey      INT NOT NULL,  
    l_prodkey        INT NOT NULL,
    l_discount       decimal(5,2) NOT NULL,
@@ -150,32 +150,32 @@ VALUES(1,6,4550.63,"2020-07-15","ER"),
 
 --populating Product
 INSERT INTO Product(p_prodkey,p_name,p_type,p_material,p_brand,p_rating,p_retailprice)
-VALUES(1,"RED ACRYLIC PAINT TUBE","PAINT","ACRYLIC","LIQUITEX","90",3.50),
-      (2,"ORANGE OIL PAINT TUBE","PAINT","OIL","WILLIAMSBURG","93",9.89),
-      (3,"STUDENT SERIES BRUSH SET","BRUSH","WATERCOLOR","DA VINCI","95",19.90),
-      (4,"PRIMIER COLOR PENCIL 12 SET","PENCIL","COLOR","PRISMACOLOR","95",10.95),
-      (5,"ART DRAWING PENCILS 12 PACK","PENCIL","GRAPHITE","STAEDTLER","97",14.37),
-      (6,"CHARCOAL DRAWING SET 33 PACK","PENCIL","CHARCOAL","GENERAL PENCIL","89",30.54),
-      (7,"STRATHMORE SERIES SKETCH PAD 75 PAGES","PAPER","HEAVY WEIGHT","STRATHMORE","92",20.99),
-      (8,"ROUND FULL STICK 12 PIECE SET","PASTEL","OIL","VAN GOGH","76",13.87),
-      (9,"LARGE RASOPLAST PENCIL ERASER 3 PACK","ERASER","PLASTIC","STAEDTLER","87",3.99),
-      (10,"WATER COLOR PAINT SET","PAINT","WATERCOLOR","WINSOR & NEWTON COTMAN","76",29.99),
-      (11,"CANVAS PANEL 4 PACK","CANVAS","COTTON","FREDRIX","84",17.45)
+VALUES(1,"RED ACRYLIC PAINT TUBE","PAINT","ACRYLIC","LIQUITEX",90,3.50),
+      (2,"ORANGE OIL PAINT TUBE","PAINT","OIL","WILLIAMSBURG",93,9.89),
+      (3,"STUDENT SERIES BRUSH SET","BRUSH","WATERCOLOR","DA VINCI",95,19.90),
+      (4,"PRIMIER COLOR PENCIL 12 SET","PENCIL","COLOR","PRISMACOLOR",95,10.95),
+      (5,"ART DRAWING PENCILS 12 PACK","PENCIL","GRAPHITE","STAEDTLER",97,14.37),
+      (6,"CHARCOAL DRAWING SET 33 PACK","PENCIL","CHARCOAL","GENERAL PENCIL",89,30.54),
+      (7,"STRATHMORE SERIES SKETCH PAD 75 PAGES","PAPER","HEAVY WEIGHT","STRATHMORE",92,20.99),
+      (8,"ROUND FULL STICK 12 PIECE SET","PASTEL","OIL","VAN GOGH",76,13.87),
+      (9,"LARGE RASOPLAST PENCIL ERASER 3 PACK","ERASER","PLASTIC","STAEDTLER",87,3.99),
+      (10,"WATER COLOR PAINT SET","PAINT","WATERCOLOR","WINSOR & NEWTON COTMAN",76,29.99),
+      (11,"CANVAS PANEL 4 PACK","CANVAS","COTTON","FREDRIX",84,17.45)
     ;
 
 --populating ProductQuantity
 INSERT INTO ProductQuantity(pq_prodkey,pq_currstock,pq_restockdate,pq_availability)
-VALUES(1,10,"12-21-2020","Y"),
-      (2,0,"11-05-2020","N"),
-      (3,54,"12-01-2020","Y"),
-      (4,35,"10-03-2020","Y"),
-      (5,67,"12-12-2020","Y"),
+VALUES(1,10,"2020-12-21","Y"),
+      (2,0,"2020-11-05","N"),
+      (3,54,"2020-12-01","Y"),
+      (4,35,"2020-10-03","Y"),
+      (5,67,"2020-12-12","Y"),
       (6,97,"01-21-2021","Y"),
-      (7,0,"12-25-2020","N"),
-      (8,350,"11-01-2020","Y"),
-      (9,107,"12-09-2020","Y"),
-      (10,30,"10-27-2020","Y"),
-      (11,53,"12-06-2020","Y")
+      (7,0,"2020-12-25","N"),
+      (8,350,"2020-11-01","Y"),
+      (9,107,"2020-12-09","Y"),
+      (10,30,"2020-10-27","Y"),
+      (11,53,"2020-12-06","Y")
     ;
 
 --populating Lineitem
@@ -187,7 +187,7 @@ VALUES(1,10,3,0.03,0.10,0,"2020-07-17","2020-07-25"),
       (5,8,10,0.25,0.19,2.35,"2020-11-04","2020-11-11"),
       (6,2,11,0.50,0.20,1.65,"2020-08-07","2020-08-14"),
       (7,1,3,0.13,0.09,1.23,"2020-03-06","2020-03-13"),
-      (8,6,1,0.40,0.05,0.08,"2020-03-13","2020-03-20"),
+      (8,1,6,0.40,0.05,0.08,"2020-03-13","2020-03-20"),
       (9,3,1,0.54,0.09,0.04,"2020-08-01","2020-08-07"),
       (10,4,4,0.02,0.03,0.34,"2020-10-21","2020-10-28")
 ;
@@ -195,21 +195,46 @@ VALUES(1,10,3,0.03,0.10,0,"2020-07-17","2020-07-25"),
 --populating Store
 INSERT INTO Store(st_name,st_product)
 VALUES("HOBBY LOBBY",2),
+      ("HOBBY LOBBY",9),
       ("MICHAELS",1),
+      ("MICHAELS",4),
+      ("MICHAELS",5),
       ("WALMART",6),
       ("BLICK ART MATERIALS",3),
+      ("BLICK ART MATERIALS",8),
       ("JOANN FABRICS AND CRAFTS",4),
+      ("JOANN FABRICS AND CRAFTS",10),
       ("TARGET",5),
       ("JERRY'S ARTARAMA",6)
 ;
 
 -- --populating In-Store
--- INSERT INTO InStore(storeName,productName,productBrand)
--- VALUES();
+INSERT INTO InStore(storeName,productName,productBrand)
+VALUES("HOBBY LOBBY","ORANGE OIL PAINT TUBE","WILLIAMSBURG"),
+      ("HOBBY LOBBY","LARGE RASOPLAST PENCIL ERASER 3 PACK","STAEDTLER"),
+      ("MICHAELS","RED ACRYLIC PAINT TUBE","LIQUITEX"),
+      ("MICHAELS","PRIMIER COLOR PENCIL 12 SET","PRISMACOLOR"),
+      ("MICHAELS","ART DRAWING PENCILS 12 PACK","STAEDTLER"),
+      ("WALMART","CHARCOAL DRAWING SET 33 PACK","GENERAL PENCIL"),
+      ("BLICK ART MATERIALS","STUDENT SERIES BRUSH SET","DA VINCI"),
+      ("BLICK ART MATERIALS","ROUND FULL STICK 12 PIECE SET","VAN GOGH"),
+      ("JOANN FABRICS AND CRAFTS","PRIMIER COLOR PENCIL 12 SET","PRISMACOLOR"),
+      ("JOANN FABRICS AND CRAFTS","WATER COLOR PAINT SET","WINSOR & NEWTON COTMAN"),
+      ("TARGET","ART DRAWING PENCILS 12 PACK","STAEDTLER"),
+      ("JERRY'S ARTARAMA","CHARCOAL DRAWING SET 33 PACK","GENERAL PENCIL");
 
 -- --populating OrderDetails
--- INSERT INTO OrderDetails(odSuppkey,odOrderkey)
--- VALUES();
+INSERT INTO OrderDetails(odOrderkey, odSuppkey)
+VALUES(1,10),
+      (2,5),
+      (3,7),
+      (4,9),
+      (5,8),
+      (6,2),
+      (7,1),
+      (8,1),
+      (9,3),
+      (10,4);
 
 
 --for printing tables to see
@@ -230,3 +255,131 @@ SELECT * FROM Store;
 -- SELECT * FROM InStore;
 
 -- SELECT * FROM OrderDetails;
+
+--QUERIES--
+
+--1. Find the products that cost less than or equal to $20 and are pencils--
+SELECT p_name 
+    FROM Product 
+    WHERE p_retailprice <= 20
+        AND p_type = "PENCIL"
+;
+
+--2. Add a few new products that were released by Prismacolor.--
+INSERT INTO Product 
+VALUES(12,"PRIMIER COLOR PENCIL 24 SET","PENCIL","COLOR","PRISMACOLOR","82",24.95),
+      (13,"PRIMIER RUBBER ERASER","ERASER","RUBBER","PRISMACOLOR","68",2.99)
+;
+
+--3. A user wants to see the list of in-stock paints with a price less than $40 in descending order of ratings.--
+SELECT p_name, p_type, p_material, p_retailprice, p_rating
+    FROM Product, ProductQuantity
+    WHERE p_retailprice < 40
+        AND p_prodkey = pq_prodkey
+        AND pq_availability = "Y"
+        AND p_type = "PAINT"
+    GROUP BY p_rating
+    ORDER BY p_rating DESC
+;
+
+--4. Find how many customers purchased pencils in the year 2020 and have already been delivered.--
+SELECT COUNT(c_custkey)
+    FROM Customer, Orders, Product, Lineitem
+    WHERE l_orderkey = o_orderkey
+        AND o_custkey = c_custkey
+        AND p_prodkey = l_prodkey
+        AND p_type = "PENCIL"
+        AND o_orderdate LIKE '%2020%'
+        AND o_orderstatus = 'D'
+;
+
+--5. Fredrix canvases are being recalled temporarily so they need to be deleted from the product list--
+DELETE FROM Product
+    WHERE p_brand = "FREDRIX"
+    AND p_type = "CANVAS"
+;
+
+--6. The price of all paper increased by $0.25--
+UPDATE Product
+    SET p_retailprice = p_retailprice + 0.25
+    WHERE p_type = 'PAPER'
+;
+
+--7. A user wants to find all the stores that have available Van Gogh brand goods with a price of at least $5. Also list the product name and retail price.--
+SELECT st_name, p_name, p_retailprice
+    FROM Store, Product, ProductQuantity
+    WHERE st_product = p_prodkey
+        AND pq_prodkey = p_prodkey
+        AND pq_availability = 'Y'
+        AND p_brand = 'VAN GOGH'
+        AND p_retailprice >= 5
+    GROUP BY st_name
+;
+
+--8. What is the average price of all heavy-weight paper sketchbooks?--
+SELECT AVG(p_retailprice) AS mycount
+    FROM Product
+    WHERE p_type = 'PAPER'
+    AND p_material = "HEAVY WEIGHT"
+;
+
+--9. All orders in October 2020 are now delivered.--
+UPDATE Orders
+    SET o_orderstatus = 'D'
+    WHERE o_orderdate LIKE '%2020-10%'
+;
+
+--10. List the names of the current available stock of paints next to their brands and quantity--
+SELECT p_name, p_brand, pq_currstock
+    FROM Product, ProductQuantity
+    WHERE pq_availability = 'Y'
+        AND p_prodkey = pq_prodkey
+        AND p_type = 'PAINT'
+;
+
+--11. Which stores are Staedtler products being sold in?--
+SELECT st_name
+    FROM Store, Product
+    WHERE st_product = p_prodkey
+        AND p_brand = 'STAEDTLER'
+;
+
+--12. A user wants to see all oil paints and cotton canvas options listed with their ratings and price, but in ascending order of price--
+SELECT p_name, p_rating, p_retailprice
+    FROM Product
+    WHERE (p_type = 'PAINT'
+        AND p_material = 'OIL'
+        OR p_type = 'CANVAS'
+        AND p_material = 'COTTON'
+        )
+    GROUP BY p_name
+    ORDER BY p_retailprice ASC
+;
+
+--13. Find the list of stores with at least 3 different products.--
+SELECT st_name 
+    FROM Store, InStore
+    WHERE s_name = storeName
+    GROUP BY st_name
+    HAVING COUNT(st_name) > 2
+;
+
+--14. --
+
+
+--15. --
+
+
+--16. --
+
+
+--17. --
+
+
+--18. --
+
+
+--19. --
+
+
+--20. --
