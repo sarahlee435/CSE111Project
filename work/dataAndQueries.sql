@@ -88,7 +88,18 @@ VALUES(1,"Joe Cool","kjasdlkjsal","jcool@gmail.com","209-154-2692"),
       (7,"Bob Builder","Jashldjk","bbuilder@gmail.com","544-621-4796"),
       (8,"Daisy Fields","askdjhuc","dfields@gmail.com","515-261-7899"),
       (9,"Loch Lake","aslidkjlk","llake@gmail.com","565-563-7456"),
-      (10,"Savannah Wild","opioeihasd","swild@gmail.com","631-794-4562");
+      (10,"Savannah Wild","opioeihasd","swild@gmail.com","631-794-4562"),
+      (11,"Latte Sweets","asdguijp[ d","lsweets@gmail.com","125-794-4652"),
+      (12,"Ruby Rose","mpugkjoqw.,w","rrose@gmail.com","894-756-2315"),
+      (13,"Onyx Kingston","iyuigshmb;","okingston@gmail.com","789-213-5487"),
+      (14,"Lara Croft","asywu8qas","lcroft@gmail.com","879-236-4869"),
+      (15,"Angel Benevolence","bnmbxzip","abenevolence@gmail.com","633-785-9999"),
+      (16,"Check Gecko","asjhk9y7gk","cgeck@gmail.com","777-566-1212"),
+      (17,"Avril Levy","piuoiyhb8","alevy@gmail.com","122-646-7845"),
+      (18,"Amethyst Connors","jpoipoua","aconnors@gmail.com","325-5658-7777"),
+      (19,"Eloise Capello","aspoiuqmn","ecapello@gmail.com","315-7894-6661"),
+      (20,"Summer Anderson","tuewp921jk","sanderson@gmail.com","165-894-7785");
+      
 
 --populating suppliers
 INSERT INTO Supplier(s_suppkey,s_name,s_address,s_email,s_phone)
