@@ -112,7 +112,17 @@ VALUES(1,"Kate Spade","askjdjlasd;aks","kspade@gmail.com","546-514-1521"),
       (7,"Queen Jewel","uasoidu","qjewel@gmail.com","455-487-1645"),
       (8,"Honii Clover","asicoup","hclover@gmail.com","894-526-8997"),
       (9,"Asta Bulls","qowihdhfj","abulls@gmail.com","789-123-7077"),
-      (10,"Star Nebula","Psdlkv qowiu","snebula@gmail.com","545-445-7899");
+      (10,"Star Nebula","Psdlkv qowiu","snebula@gmail.com","545-445-7899"),
+      (11,"Vittorio Capello","mnbzxz;.uio","vcapello@gmail.com","416-469-4877"),
+      (12,"Mahina Capello","sadlijkca","mcapello@gmail.com","416-113-1565"),
+      (13,"Preston Russell","allknl[[po","prussell@gmail.com","789-899-1236"),
+      (14,"Felicity Bonhomme","foiapshkla","fbonhomme@gmail.com","789-132-1846"),
+      (15,"Juliette Salazar","tybjkhc asi","jsalazar@gmail.com","127-664-8942"),
+      (16,"Luna Charming","nmnbzxt xz","lcharming@gmail.com","333-7874-1567"),
+      (17,"Leon Aros","mnpijpqqq","laros@gmail.com","656-455-5555"),
+      (18,"Arlo Drago","asjpduiugg","adrago@gmail.com","879-998-1261"),
+      (19,"Arturo Aros","bbozxoia","aaros@gmail.com","125-561-7789"),
+      (20,"Crest Lunalla","jlioiu74w","clunalla@gmail.com","132-789-4456");
 
 --populating orders
 --NOTE: ER = en route, W = warehouse, D = delivered
