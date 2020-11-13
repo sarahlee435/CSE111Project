@@ -73,8 +73,8 @@ CREATE TABLE InStore(
 
 --OrderDetails table--
 CREATE TABLE OrderDetails(
-    odSuppkey      INT NOT NULL,  
-    odOrderkey     INT NOT NULL
+    odSuppkey      INT primary key,  
+    odOrderkey     INT primary key
 );
 
 --populating customers
@@ -272,9 +272,19 @@ VALUES(1,10),
       (5,8),
       (6,2),
       (7,1),
-      (8,1),
+      (8,12),
       (9,3),
-      (10,4);
+      (10,4),
+      (11,20),
+      (12,16),
+      (13,11),
+      (14,13),
+      (15,17),
+      (16,15),
+      (17,6),
+      (18,19),
+      (19,14),
+      (20,18);
 
 
 --for printing tables to see
