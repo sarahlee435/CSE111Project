@@ -157,7 +157,7 @@ VALUES(1,"RED ACRYLIC PAINT TUBE","PAINT","ACRYLIC","LIQUITEX",90,3.50),
       (4,"PRIMIER COLOR PENCIL 12 SET","PENCIL","COLOR","PRISMACOLOR",95,10.95),
       (5,"ART DRAWING PENCILS 12 PACK","PENCIL","GRAPHITE","STAEDTLER",97,14.37),
       (6,"CHARCOAL DRAWING SET 33 PACK","PENCIL","CHARCOAL","GENERAL PENCIL",89,30.54),
-      (7,"STRATHMORE SERIES SKETCH PAD 75 PAGES","PAPER","HEAVY WEIGHT","STRATHMORE",92,20.99),
+      (7,"STRATHMORE SERIES SKETCH PAD 75 PAGES","PAPER","MIXED MEDIA","STRATHMORE",92,20.99),
       (8,"ROUND FULL STICK 12 PIECE SET","PASTEL","OIL","VAN GOGH",76,13.87),
       (9,"LARGE RASOPLAST PENCIL ERASER 3 PACK","ERASER","PLASTIC","STAEDTLER",87,3.99),
       (10,"WATER COLOR PAINT SET","PAINT","WATERCOLOR","WINSOR & NEWTON COTMAN",76,29.99),
@@ -288,7 +288,8 @@ VALUES(1,10),
       (20,18);
 
 
---for printing tables to see
+--PRINTING TABLES--
+
 SELECT * FROM Customer;
 
 SELECT * FROM Supplier;
@@ -303,9 +304,9 @@ SELECT * FROM Lineitem;
 
 SELECT * FROM Store;
 
--- SELECT * FROM InStore;
+SELECT * FROM InStore;
 
--- SELECT * FROM OrderDetails;
+SELECT * FROM OrderDetails;
 
 --QUERIES--
 
@@ -318,8 +319,8 @@ SELECT p_name
 
 --2. Add a few new products that were released by Prismacolor.--
 INSERT INTO Product 
-VALUES(12,"PRIMIER COLOR PENCIL 24 SET","PENCIL","COLOR","PRISMACOLOR","82",24.95),
-      (13,"PRIMIER RUBBER ERASER","ERASER","RUBBER","PRISMACOLOR","68",2.99)
+VALUES(31,"PRIMIER COLOR PENCIL 24 SET","PENCIL","COLOR","PRISMACOLOR","82",24.95),
+      (32,"PRIMIER RUBBER ERASER","ERASER","RUBBER","PRISMACOLOR","68",2.99)
 ;
 
 --3. A user wants to see the list of in-stock paints with a price less than $40 in descending order of ratings.--
@@ -367,11 +368,11 @@ SELECT st_name, p_name, p_retailprice
     GROUP BY st_name
 ;
 
---8. What is the average price of all heavy-weight paper sketchbooks?--
+--8. What is the average price of all mixed media paper sketchbooks?--
 SELECT AVG(p_retailprice) AS mycount
     FROM Product
     WHERE p_type = 'PAPER'
-    AND p_material = "HEAVY WEIGHT"
+    AND p_material = "MIXED MEDIA"
 ;
 
 --9. All orders in October 2020 are now delivered.--
@@ -388,11 +389,11 @@ SELECT p_name, p_brand, pq_currstock
         AND p_type = 'PAINT'
 ;
 
---11. Which stores are Staedtler products being sold in?--
-SELECT st_name
-    FROM Store, Product
-    WHERE st_product = p_prodkey
-        AND p_brand = 'STAEDTLER'
+--11. List the average ratings of all products.--
+SELECT P1.p_brand, AVG(P1.p_rating)
+    FROM Product P1, Product P2
+    WHERE P1.p_brand = P2.p_brand
+    GROUP BY P1.p_brand
 ;
 
 --12. A user wants to see all oil paints and cotton canvas options listed with their ratings and price, but in ascending order of price--
@@ -407,30 +408,96 @@ SELECT p_name, p_rating, p_retailprice
     ORDER BY p_retailprice ASC
 ;
 
---13. Find the list of stores with at least 3 different products.--
+--13. Find the list of stores with at least 3 different products listed.--
 SELECT st_name 
     FROM Store, InStore
-    WHERE s_name = storeName
+    WHERE st_name = storeName
     GROUP BY st_name
     HAVING COUNT(st_name) > 2
 ;
 
---14. --
+--14. A user from Hobby Lobby wants to see their current inventory including out of stock goods.--
+SELECT DISTINCT st_name, p_name, p_brand, pq_currstock
+    FROM Store, InStore, Product, ProductQuantity
+    WHERE st_name = storeName
+        AND st_product = p_prodkey
+        AND p_prodkey = pq_prodkey
+        AND st_name = "HOBBY LOBBY"
+;
+
+--15. A user wants to see all products that are still in the warehouse.--
+SELECT p_name 
+    FROM Product, Lineitem, Orders
+    WHERE o_orderstatus = 'W'
+        AND o_orderkey = l_orderkey
+        AND l_prodkey = p_prodkey
+;
+
+--16. List the max current stock of each product by type.--
+SELECT p_type, MAX(pq_currstock)
+    FROM Product, ProductQuantity
+    WHERE p_prodkey = pq_prodkey
+    GROUP BY p_type
+;
 
 
---15. --
+--17. How many customers had purchased the same product?--
+SELECT COUNT(DISTINCT C1.c_custkey)
+    FROM (SELECT DISTINCT c_custkey
+        FROM (
+            SELECT l_prodkey
+            FROM Lineitem, Orders, Customer
+            WHERE l_orderkey = o_orderkey
+            AND o_custkey = c_custkey
+        ) L1, Orders, Customer, Lineitem L2
+        WHERE L2.l_orderkey = o_orderkey
+            AND o_custkey = c_custkey
+            AND L1.l_prodkey = L2.l_prodkey
+        GROUP BY c_custkey
+        HAVING COUNT(L2.l_prodkey) > 1
+    ) C1
+;
 
+--18. What is the minimum cost of each product by type?--
+SELECT P1.p_type, MIN(P1.p_retailprice)
+    FROM Product P1, Product P2
+    WHERE P1.p_type = P2.p_type
+    GROUP BY P1.p_type
+;
 
---16. --
+--19. Which stores are Staedtler products being sold in?--
+SELECT st_name
+    FROM Store, Product
+    WHERE st_product = p_prodkey
+        AND p_brand = 'STAEDTLER'
+;
 
+--20. A user wants to see the top ten products in ratings.--
+SELECT P1.p_name
+FROM (SELECT p_name, p_rating
+    FROM Product
+)P1
+ORDER BY P1.p_rating DESC
+LIMIT 10
+;
 
---17. --
+--21. Which customers had a less than 10% discount in their purchases?--
+SELECT c_name
+    FROM Customer, Orders, Lineitem
+    WHERE c_custkey = o_custkey
+    AND o_orderkey = l_orderkey
+    AND l_discount < .10
+;
+--22. A user wants a list of all products needed to produce watercolor art.--
+SELECT p_name
+    FROM Product
+    WHERE p_material LIKE '%WATERCOLOR%'
+;
 
-
---18. --
-
-
---19. --
-
-
---20. --
+--23. Find the names of all the suppliers whose orders they're in charge of are currently en-route--
+SELECT s_name
+    FROM Supplier, OrderDetails, Orders
+    WHERE o_orderkey = odOrderkey
+    AND s_suppkey = odSuppkey
+    AND o_orderstatus = "ER"
+;
