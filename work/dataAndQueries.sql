@@ -221,6 +221,8 @@ VALUES(1,10,3,0.03,0.10,0,"2020-07-17","2020-07-25"),
 INSERT INTO Store(st_name,st_product)
 VALUES("HOBBY LOBBY",2),
       ("HOBBY LOBBY",9),
+      ("HOBBY LOBBY",17),
+      ("HOBBY LOBBY",15),
       ("MICHAELS",1),
       ("MICHAELS",4),
       ("MICHAELS",5),
@@ -230,8 +232,13 @@ VALUES("HOBBY LOBBY",2),
       ("JOANN FABRICS AND CRAFTS",4),
       ("JOANN FABRICS AND CRAFTS",10),
       ("TARGET",5),
-      ("JERRY'S ARTARAMA",6)
-;
+      ("TARGET",13),
+      ("JERRY'S ARTARAMA",19),
+      ("AMAZON",11),
+      ("AMAZON",20),
+      ("AMAZON",16),
+      ("ETSY",12),
+      ("ETSY",18);
 
 -- --populating In-Store
 INSERT INTO InStore(storeName,productName,productBrand)
