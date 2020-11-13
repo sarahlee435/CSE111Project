@@ -157,7 +157,7 @@ VALUES(1,"RED ACRYLIC PAINT TUBE","PAINT","ACRYLIC","LIQUITEX",90,3.50),
       (4,"PRIMIER COLOR PENCIL 12 SET","PENCIL","COLOR","PRISMACOLOR",95,10.95),
       (5,"ART DRAWING PENCILS 12 PACK","PENCIL","GRAPHITE","STAEDTLER",97,14.37),
       (6,"CHARCOAL DRAWING SET 33 PACK","PENCIL","CHARCOAL","GENERAL PENCIL",89,30.54),
-      (7,"STRATHMORE SERIES SKETCH PAD 75 PAGES","PAPER","HEAVY WEIGHT","STRATHMORE",92,20.99),
+      (7,"STRATHMORE SERIES SKETCH PAD 75 PAGES","PAPER","MIXED MEDIA","STRATHMORE",92,20.99),
       (8,"ROUND FULL STICK 12 PIECE SET","PASTEL","OIL","VAN GOGH",76,13.87),
       (9,"LARGE RASOPLAST PENCIL ERASER 3 PACK","ERASER","PLASTIC","STAEDTLER",87,3.99),
       (10,"WATER COLOR PAINT SET","PAINT","WATERCOLOR","WINSOR & NEWTON COTMAN",76,29.99),
@@ -170,7 +170,17 @@ VALUES(1,"RED ACRYLIC PAINT TUBE","PAINT","ACRYLIC","LIQUITEX",90,3.50),
       (17,"WATER COLOR PENCILS 12 COUNT","PENCIL","WATERCOLOR COLOR","DERWENT",82,19.23),
       (18,"WATER COLOR PAINT SKETCHERS' POCKET BOX","PAINT","WATERCOLOR","WINSOR & NEWTON COTMAN",82,17.59),
       (19,"GALERIA ARCYLIC PAINT 10 TUBE SET","PAINT","ARCYLIC","WINSOR & NEWTON COTMAN",85,27.26),
-      (20,"ARTIST OIL COLORS INTRODUCTORY","PAINT","OIL","GAMBLIN",85,69.60);
+      (20,"ARTIST OIL COLORS INTRODUCTORY","PAINT","OIL","GAMBLIN",85,69.60),
+      (21,"ARTZEA MULTIPACK CANVAS PANELS","CANVAS","COTTON","ARTZEA",68,14.45),
+      (22,"PRISMACOLOR MAGIC RUB ERASER BOX","ERASER","VINYL","PRISMACOLOR",73,8.99),
+      (23,"COLOR DUAL TIP ALCOHOL MARKERS","MARKER","ALCOHOL","PRISMACOLOR",94,47.97),
+      (24,"GREY TONE ALCOHOL BASED MARKERS","MARKER","ALCOHOL","ARTZEA",86,27.99),
+      (25,"ACRYLIC BRUSHES SET","BRUSH","ACRYLIC","SOUCOLOR",76,5.77),
+      (26,"BLANK PREMIUM MULTIPACK CANVAS PANELS","CANVAS","COTTON","PHOENIX",83,16.43),
+      (27,"ARTLICIOUS ALL PURPOSE BRUSHES VALUE PACK","BRUSH","GOUCHE","ARTLICIOUS",62,7.23),
+      (28,"ARTZEA FINEPOINT PEN SET","PEN","INK","ARTZEA",80,55.99),
+      (29,"ARTZEA GOUCHE PAINT TUBES","PAINT","GOUCHE","ARTZEA",85,25.99),
+      (30,"SAKURA MICRO INK BRUSH PEN SET","PEN","INK","SAKURA",97,15.99);
 
 --populating ProductQuantity
 INSERT INTO ProductQuantity(pq_prodkey,pq_currstock,pq_restockdate,pq_availability)
@@ -193,7 +203,18 @@ VALUES(1,10,"2020-12-21","Y"),
       (17,0,"2020-12-15","N"),
       (18,250,"2021-01-05","Y"),
       (19,85,"2020-12-20","Y"),
-      (20,70,"2020-10-13","Y");
+      (20,70,"2020-10-13","Y"),
+      (21,33,"2020-10-03","Y"),
+      (22,64,"2020-12-31","Y"),
+      (23,256,"2021-01-30","Y"),
+      (24,74,"2020-09-05","Y"),
+      (25,846,"2020-12-09","Y"),
+      (26,754,"2020-11-05","Y"),
+      (27,32,"2020-12-17","Y"),
+      (28,0,"2021-01-08","N"),
+      (29,65,"2020-11-21","Y"),
+      (30,76,"2020-11-23","Y")
+;
 
 --populating Lineitem
 INSERT INTO Lineitem(l_orderkey,l_supplykey,l_prodkey,l_discount,l_tax,l_shipcost,l_shipdate,l_receiptdate)
@@ -224,21 +245,31 @@ VALUES("HOBBY LOBBY",2),
       ("HOBBY LOBBY",9),
       ("HOBBY LOBBY",17),
       ("HOBBY LOBBY",15),
+      ("HOBBY LOBBY",25),
+      ("HOBBY LOBBY",29),
       ("MICHAELS",1),
       ("MICHAELS",4),
       ("MICHAELS",5),
       ("WALMART",6),
+      ("WALMART",26),
+      ("WALMART",16),
       ("BLICK ART MATERIALS",3),
       ("BLICK ART MATERIALS",8),
       ("JOANN FABRICS AND CRAFTS",4),
       ("JOANN FABRICS AND CRAFTS",10),
+      ("JOANN FABRICS AND CRAFTS",21),
+      ("JOANN FABRICS AND CRAFTS",23),
       ("TARGET",5),
       ("TARGET",13),
+      ("TARGET",30),
+      ("TARGET",24),
       ("JERRY'S ARTARAMA",19),
       ("AMAZON",11),
       ("AMAZON",20),
       ("AMAZON",16),
+      ("AMAZON",22),
       ("ETSY",12),
+      ("ETSY",27),
       ("ETSY",18);
 
 -- --populating In-Store
@@ -247,21 +278,31 @@ VALUES("HOBBY LOBBY","ORANGE OIL PAINT TUBE","WILLIAMSBURG"),
       ("HOBBY LOBBY","LARGE RASOPLAST PENCIL ERASER 3 PACK","STAEDTLER"),
       ("HOBBY LOBBY","WATER COLOR PENCILS 12 COUNT","DERWENT"),
       ("HOBBY LOBBY","HALF PASTEL BOXED SET 40","SENNELIER"),
+      ("HOBBY LOBBY","ACRYLIC BRUSHES SET","SOUCOLOR"),
+      ("HOBBY LOBBY","ARTZEA GOUCHE PAINT TUBES","ARTZEA"),
       ("MICHAELS","RED ACRYLIC PAINT TUBE","LIQUITEX"),
       ("MICHAELS","PRIMIER COLOR PENCIL 12 SET","PRISMACOLOR"),
       ("MICHAELS","ART DRAWING PENCILS 12 PACK","STAEDTLER"),
-      ("WALMART","CHARCOAL DRAWING SET 33 PACK","GENERAL PENCIL"),
+      ("WALMART","CHARCOAL DRAWING SET 33 PACK","GENERAL PENCIL"),      
+      ("WALMART","BLANK PREMIUM MULTIPACK CANVAS PANELS","PHOENIX"),
+      ("WALMART","NUPASTEL 24 COUNT","PRISMACOLOR"),
       ("BLICK ART MATERIALS","STUDENT SERIES BRUSH SET","DA VINCI"),
       ("BLICK ART MATERIALS","ROUND FULL STICK 12 PIECE SET","VAN GOGH"),
       ("JOANN FABRICS AND CRAFTS","PRIMIER COLOR PENCIL 12 SET","PRISMACOLOR"),
       ("JOANN FABRICS AND CRAFTS","WATER COLOR PAINT SET","WINSOR & NEWTON COTMAN"),
+      ("JOANN FABRICS AND CRAFTS","ARTZEA MULTIPACK CANVAS PANELS","ARTZEA"),
+      ("JOANN FABRICS AND CRAFTS","COLOR DUAL TIP ALCOHOL MARKERS","PRISMACOLOR"),
       ("TARGET","ART DRAWING PENCILS 12 PACK","STAEDTLER"),
       ("TARGET","STRATHMORE SERIES 300 CHARCOL COLOR PAD","STRATHMORE"),
+      ("TARGET","SAKURA MICRO INK BRUSH PEN SET","SAKURA"),
+      ("TARGET","GREY TONE ALCOHOL BASED MARKERS","ARTZEA"),
       ("JERRY'S ARTARAMA","CHARCOAL DRAWING SET 33 PACK","GENERAL PENCIL"),
       ("AMAZON","CANVAS PANEL 4 PACK","FREDRIX"),
       ("AMAZON","ARTIST OIL COLORS INTRODUCTORY","GAMBLIN"),
       ("AMAZON","NUPASTEL 24 COUNT","PRISMACOLOR"),
+      ("AMAZON","PRISMACOLOR MAGIC RUB ERASER BOX","PRISMACOLOR"),
       ("ETSY","STRATHMORE SERIES 400 WATER COLOR PAD","STRATHMORE"),
+      ("ETSY","ARTLICIOUS ALL PURPOSE BRUSHES VALUE PACK","ARTLICIOUS"),
       ("ETSY","WATER COLOR PAINT SKETCHERS' POCKET BOX","WINSOR & NEWTON COTMAN");
 
 -- --populating OrderDetails
@@ -288,7 +329,8 @@ VALUES(1,10),
       (20,18);
 
 
---for printing tables to see
+--PRINTING TABLES--
+
 SELECT * FROM Customer;
 
 SELECT * FROM Supplier;
@@ -303,9 +345,9 @@ SELECT * FROM Lineitem;
 
 SELECT * FROM Store;
 
--- SELECT * FROM InStore;
+SELECT * FROM InStore;
 
--- SELECT * FROM OrderDetails;
+SELECT * FROM OrderDetails;
 
 --QUERIES--
 
@@ -318,8 +360,8 @@ SELECT p_name
 
 --2. Add a few new products that were released by Prismacolor.--
 INSERT INTO Product 
-VALUES(12,"PRIMIER COLOR PENCIL 24 SET","PENCIL","COLOR","PRISMACOLOR","82",24.95),
-      (13,"PRIMIER RUBBER ERASER","ERASER","RUBBER","PRISMACOLOR","68",2.99)
+VALUES(31,"PRIMIER COLOR PENCIL 24 SET","PENCIL","COLOR","PRISMACOLOR","82",24.95),
+      (32,"PRIMIER RUBBER ERASER","ERASER","RUBBER","PRISMACOLOR","68",2.99)
 ;
 
 --3. A user wants to see the list of in-stock paints with a price less than $40 in descending order of ratings.--
@@ -367,11 +409,11 @@ SELECT st_name, p_name, p_retailprice
     GROUP BY st_name
 ;
 
---8. What is the average price of all heavy-weight paper sketchbooks?--
+--8. What is the average price of all mixed media paper sketchbooks?--
 SELECT AVG(p_retailprice) AS mycount
     FROM Product
     WHERE p_type = 'PAPER'
-    AND p_material = "HEAVY WEIGHT"
+    AND p_material = "MIXED MEDIA"
 ;
 
 --9. All orders in October 2020 are now delivered.--
@@ -388,11 +430,11 @@ SELECT p_name, p_brand, pq_currstock
         AND p_type = 'PAINT'
 ;
 
---11. Which stores are Staedtler products being sold in?--
-SELECT st_name
-    FROM Store, Product
-    WHERE st_product = p_prodkey
-        AND p_brand = 'STAEDTLER'
+--11. List the average ratings of all products.--
+SELECT P1.p_brand, AVG(P1.p_rating)
+    FROM Product P1, Product P2
+    WHERE P1.p_brand = P2.p_brand
+    GROUP BY P1.p_brand
 ;
 
 --12. A user wants to see all oil paints and cotton canvas options listed with their ratings and price, but in ascending order of price--
@@ -407,30 +449,96 @@ SELECT p_name, p_rating, p_retailprice
     ORDER BY p_retailprice ASC
 ;
 
---13. Find the list of stores with at least 3 different products.--
+--13. Find the list of stores with at least 3 different products listed.--
 SELECT st_name 
     FROM Store, InStore
-    WHERE s_name = storeName
+    WHERE st_name = storeName
     GROUP BY st_name
     HAVING COUNT(st_name) > 2
 ;
 
---14. --
+--14. A user from Hobby Lobby wants to see their current inventory including out of stock goods.--
+SELECT DISTINCT st_name, p_name, p_brand, pq_currstock
+    FROM Store, InStore, Product, ProductQuantity
+    WHERE st_name = storeName
+        AND st_product = p_prodkey
+        AND p_prodkey = pq_prodkey
+        AND st_name = "HOBBY LOBBY"
+;
+
+--15. A user wants to see all products that are still in the warehouse.--
+SELECT p_name 
+    FROM Product, Lineitem, Orders
+    WHERE o_orderstatus = 'W'
+        AND o_orderkey = l_orderkey
+        AND l_prodkey = p_prodkey
+;
+
+--16. List the max current stock of each product by type.--
+SELECT p_type, MAX(pq_currstock)
+    FROM Product, ProductQuantity
+    WHERE p_prodkey = pq_prodkey
+    GROUP BY p_type
+;
 
 
---15. --
+--17. How many customers had purchased the same product?--
+SELECT COUNT(DISTINCT C1.c_custkey)
+    FROM (SELECT DISTINCT c_custkey
+        FROM (
+            SELECT l_prodkey
+            FROM Lineitem, Orders, Customer
+            WHERE l_orderkey = o_orderkey
+            AND o_custkey = c_custkey
+        ) L1, Orders, Customer, Lineitem L2
+        WHERE L2.l_orderkey = o_orderkey
+            AND o_custkey = c_custkey
+            AND L1.l_prodkey = L2.l_prodkey
+        GROUP BY c_custkey
+        HAVING COUNT(L2.l_prodkey) > 1
+    ) C1
+;
 
+--18. What is the minimum cost of each product by type?--
+SELECT P1.p_type, MIN(P1.p_retailprice)
+    FROM Product P1, Product P2
+    WHERE P1.p_type = P2.p_type
+    GROUP BY P1.p_type
+;
 
---16. --
+--19. Which stores are Staedtler products being sold in?--
+SELECT st_name
+    FROM Store, Product
+    WHERE st_product = p_prodkey
+        AND p_brand = 'STAEDTLER'
+;
 
+--20. A user wants to see the top ten products in ratings.--
+SELECT P1.p_name
+FROM (SELECT p_name, p_rating
+    FROM Product
+)P1
+ORDER BY P1.p_rating DESC
+LIMIT 10
+;
 
---17. --
+--21. Which customers had a less than 10% discount in their purchases?--
+SELECT c_name
+    FROM Customer, Orders, Lineitem
+    WHERE c_custkey = o_custkey
+    AND o_orderkey = l_orderkey
+    AND l_discount < .10
+;
+--22. A user wants a list of all products needed to produce watercolor art.--
+SELECT p_name
+    FROM Product
+    WHERE p_material LIKE '%WATERCOLOR%'
+;
 
-
---18. --
-
-
---19. --
-
-
---20. --
+--23. Find the names of all the suppliers whose orders they're in charge of are currently en-route--
+SELECT s_name
+    FROM Supplier, OrderDetails, Orders
+    WHERE o_orderkey = odOrderkey
+    AND s_suppkey = odSuppkey
+    AND o_orderstatus = "ER"
+;
