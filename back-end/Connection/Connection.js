@@ -66,6 +66,23 @@ export const AddProduct = (req, res) =>{
         })
     })
 };
-
+//This table has the orders,customers,supplies, and even lineitems connected
+export const Orders = (req, res) =>{
+    Data.all("SELECT o_orderkey AS key,Customer.c_custkey,s_suppkey,c_name AS customer,s_name AS store,o_totalcost AS total,o_orderdate AS orderdate,o_orderstatus AS status FROM Supplier INNER JOIN Customer ON Orders.o_custkey = Customer.c_custkey INNER JOIN Orders ON Lineitem.l_orderkey = Orders.o_orderkey INNER JOIN Lineitem ON Supplier.s_suppkey = Lineitem.l_suppkey;", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+//This table has product,product, and product quantity tables
+export const Store = (req, res) =>{
+    Data.all(" SELECT p_prodkey AS key,p_name AS name,st_name AS store,p_type AS type,p_material AS material,p_brand AS brand,pq_currstock AS stock,pq_availability AS availability,p_rating AS rating,p_retailprice AS price FROM Product INNER JOIN ProductQuantity ON Product.p_prodkey = ProductQuantity.pq_prodkey INNER JOIN Store ON Product.p_prodkey = Store.st_prodkey;", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
 export default Data;
 
