@@ -1,7 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
-
+import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,9 +16,6 @@ const Orders = item => (
         <td>{item.list.o_orderstatus}</td>
         <td>{item.list.l_shipdate}</td> 
         <td>{item.list.l_receiptdate}</td> 
-        <td> 
-            <Link to = {{pathname:`/Edit/${item.list.o_orderkey}/${item.list.c_name}/${item.list.s_name}/${item.list.o_totalcost}/${item.list.o_orderdate}/${item.list.o_orderstatus}/${item.list.l_shipdate}/${item.list.l_receiptdate}`}}>Edit</Link>
-        </td> 
     </tr>
 )
 
@@ -36,7 +33,7 @@ class OrderList extends Component{
     }
 
     getOrders(){
-        fetch('http://localhost:4006/Orders')
+        fetch('http://localhost:8080/Orders')
             .then(res => res.json())
             .then(result => this.setState({list:result}))
     }
@@ -64,6 +61,9 @@ class OrderList extends Component{
                                     <li className="navbar-item px-2">
                                         <Link to="/Orders">Orders</Link>
                                     </li>
+                                    <li className="navbar-item px-2">
+                                        <Link to="/Stores">Stores</Link>
+                                    </li>
                                 </ul>    
                             </div>
                         </Navbar>
@@ -72,7 +72,7 @@ class OrderList extends Component{
 
 
                 <div className = 'container'>
-                    <h3 style = {{paddingTop: '40px', paddingBottom:'40px'}}>Order Received</h3>
+                    <h3 style = {{paddingTop: '40px', paddingBottom:'20px'}}>Orders Received</h3>
                    
                     <div>
                     <Table className = "table table-striped" variant = 'light' bordered responsive>

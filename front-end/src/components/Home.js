@@ -22,6 +22,9 @@ class Home extends Component{
                                     <li className="navbar-item px-2">
                                         <Link to="/Orders">Orders</Link>
                                     </li>
+                                    <li className="navbar-item px-2">
+                                        <Link to="/Stores">Stores</Link>
+                                    </li>
                                 </ul>    
                             </div>
                         </Navbar>

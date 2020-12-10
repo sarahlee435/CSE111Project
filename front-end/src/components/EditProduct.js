@@ -42,7 +42,7 @@ class Edit extends Component {
             "p_retailprice": this.state.p_retailprice,
         }
 
-        axios.put('http://localhost:4006/Edit/', update)
+        axios.put('http://localhost:8080/Edit/', update)
             .then(res => console.log(res.data))
 
         this.setState({
@@ -62,14 +62,10 @@ class Edit extends Component {
                 <div style = {{backgroundColor: "#FFD7D7"}}>
                     <div style = {{backgroundColor: "#FFBABA"}}>
                         <Navbar>
-                            <h1>Art Supply Database</h1>
                             <div className = "collapse navbar-collapse">
-                                <ul className = "navbar-nav ml-auto">
+                                <ul className = "navbar-nav mr-auto">
                                     <li className="navbar-item px-2">
-                                        <Link to="/">Home</Link>
-                                    </li>
-                                    <li className="navbar-item px-2">
-                                        <Link to="/Orders">Orders</Link>
+                                        <Link to="/">Back</Link>
                                     </li>
                                 </ul>    
                             </div>

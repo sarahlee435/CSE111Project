@@ -36,9 +36,8 @@ class Delete extends Component {
             "p_prodkey" : this.state.p_prodkey,
             "p_name": this.state.p_name
         }
-        console.log('{this.state.p_prodkey}');
-        console.log('{this.state.p_name}');
-        axios.delete('http://localhost:4006/Delete/' + this.state.p_prodkey)
+       
+        axios.delete('http://localhost:8080/Delete/' + this.state.p_prodkey)
             .then(res => console.log(res.data))
 
         this.setState({
@@ -53,19 +52,16 @@ class Delete extends Component {
                 <div style = {{backgroundColor: "#FFD7D7"}}>
                     <div style = {{backgroundColor: "#FFBABA"}}>
                         <Navbar>
-                            <h1>Art Supply Database</h1>
                             <div className = "collapse navbar-collapse">
-                                <ul className = "navbar-nav ml-auto">
+                                <ul className = "navbar-nav mr-auto">
                                     <li className="navbar-item px-2">
-                                        <Link to="/">Home</Link>
-                                    </li>
-                                    <li className="navbar-item px-2">
-                                        <Link to="/Orders">Orders</Link>
+                                        <Link to="/">Back</Link>
                                     </li>
                                 </ul>    
                             </div>
                         </Navbar>
                     </div>
+                 
                  
             
             <div className = 'container' style={{marginTop: 20}}>

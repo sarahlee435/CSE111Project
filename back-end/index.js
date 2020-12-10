@@ -12,7 +12,7 @@ let router = express.Router();
 app.use(bodyParser.json());
 app.use(cors());
 
-let PORT = 4006;
+let PORT = 8080;
 
 
 app.use('/', Routes);

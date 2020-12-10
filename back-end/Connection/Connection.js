@@ -10,7 +10,71 @@ export const Products = (req, res) =>{
         else
             res.send(JSON.stringify(row));    
     })
-}
+};
+
+export const ProductKey = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_prodkey ORDER BY p_prodkey", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
+export const ProductName = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_name, p_prodkey ORDER BY p_name, p_prodkey", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
+export const ProductType = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_type, p_name ORDER BY p_type, p_name", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
+export const ProductMat = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_material, p_name ORDER BY p_material, p_name", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
+export const ProductBrand = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_brand, p_name ORDER BY p_brand, p_name", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
+export const ProductRating = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_rating, p_name ORDER BY p_rating DESC", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
+export const ProductPrice = (req, res) =>{
+    Data.all("SELECT * FROM Product GROUP BY p_retailprice, p_name ORDER BY p_retailprice ASC", (err,row)=>{
+        if(err)
+            console.log(err);
+        else
+            res.send(JSON.stringify(row));    
+    })
+};
+
 
 export const EditProduct = (req, res) =>{
 
@@ -69,7 +133,7 @@ export const AddProduct = (req, res) =>{
 
 //This table has the orders, customers, supplies, and lineitems connected
 export const Orders = (req, res) =>{
-    Data.all("SELECT o_orderkey, c_name, s_name, o_totalcost, o_orderdate, o_orderstatus, l_shipdate, l_receiptdate FROM Supplier, Customer, Orders, Lineitem where l_suppkey = s_suppkey AND l_orderkey = o_orderkey AND c_custkey = o_custkey GROUP BY o_orderkey;", (err,row)=>{
+    Data.all("SELECT o_orderkey, c_name, s_name, o_totalcost, o_orderdate, o_orderstatus, l_shipdate, l_receiptdate FROM Supplier, Customer, Orders, Lineitem where l_supplykey = s_suppkey AND l_orderkey = o_orderkey AND c_custkey = o_custkey GROUP BY o_orderkey;", (err,row)=>{
         if(err)
             console.log(err);
         else
@@ -77,54 +141,10 @@ export const Orders = (req, res) =>{
     })
 };
 
-export const EditOrder = (req, res) =>{
-
-    const sql = 'UPDATE Order SET o_orderkey = ?, o_totalcost = ?, o_orderdate = ?, o_orderstatus = ? WHERE o_orderkey = ?'
-    const sql2 = 'UPDATE Customer SET c_name = ? WHERE o_orderkey = ?'
-    const sql3 = 'UPDATE Supplier SET s_name = ? WHERE o_orderkey = ?'
-    const sql4 = 'UPDATE Lineitem SET l_shipdate, l_receiptdate WHERE o_orderkey = ?'
-    
-    Data.serialize(()=>{
-        Data.run(sql, [req.body['o_orderkey'], req.body['o_totalcost'], req.body['o_orderdate'], req.body['o_orderstatus'], req.body['o_orderkey']], (err, row)=>{
-        if(err)
-            console.log(err)
-        else
-           console.log("EDITED")
-        
-    })
-})
-    Data.serialize(()=>{
-        Data.run(sql2, [req.body['c_name'], req.body['o_orderkey']], (err, row)=>{
-        if(err)
-            console.log(err)
-        else
-           console.log("EDITED")
-        
-    })
-})
-    Data.serialize(()=>{
-        Data.run(sql3, [req.body['s_name'], req.body['o_orderkey']], (err, row)=>{
-        if(err)
-            console.log(err)
-        else
-           console.log("EDITED")
-        
-    })
-})
-    Data.serialize(()=>{
-        Data.run(sql4, [req.body['l_shipdate'], req.body['l_receiptdate'], req.body['o_orderkey']], (err, row)=>{
-        if(err)
-            console.log(err)
-        else
-           console.log("EDITED")
-        
-    })
-})
-};
 
 //This table has product, store, and product quantity tables
 export const Store = (req, res) =>{
-    Data.all("SELECT p_prodkey, p_name, st_name, p_type, p_material, p_brand, pq_currstock, pq_availability, p_rating, p_retailprice FROM Product, ProductQuantity, Store WHERE p_prodkey = pq_prodkey AND p_prodkey = st_prodkey;", (err,row)=>{
+    Data.all("SELECT p_prodkey, p_name, p_type, p_material, p_brand, p_rating, p_retailprice, pq_currstock, pq_restockdate, pq_availability, st_name FROM Product, ProductQuantity, Store WHERE p_prodkey = pq_prodkey AND p_prodkey = st_product;", (err,row)=>{
         if(err)
             console.log(err);
         else
@@ -134,3 +154,104 @@ export const Store = (req, res) =>{
 
 export default Data;
 
+export const EditStore1 = (req, res) =>{
+    const sql = 'UPDATE Store SET st_product = ?, st_name = ? WHERE st_product = ?'
+
+    Data.serialize(()=>{
+        Data.run(sql, [req.body['p_prodkey'], req.body['st_name'], req.body['p_prodkey']], (err, row)=>{
+        if(err)
+            console.log(err)
+        else
+           console.log("EDITED")
+        
+    })
+})
+};
+
+export const EditStore2 = (req, res) =>{
+    const sql = 'UPDATE ProductQuantity SET pq_prodkey = ?, pq_currstock = ?, pq_restockdate = ?, pq_availability = ? WHERE pq_prodkey = ?'
+    
+    Data.serialize(()=>{
+        Data.run(sql, [req.body['p_prodkey'], req.body['pq_currstock'], req.body['pq_restockdate'], req.body['pq_availability'], req.body['p_prodkey']], (err, row)=>{
+        if(err)
+            console.log(err)
+        else
+           console.log("EDITED")
+        
+    })
+})
+};
+
+
+
+export const DeleteQuantity = (req, res) =>{
+ 
+    Data.serialize(()=>{
+        Data.each("DELETE FROM ProductQuantity WHERE pq_prodkey = ?", [req.params.p_prodkey], (err, row)=>{    
+            if(err){
+                console.log(err);
+            }else{
+                console.log("DELETED");
+            }
+        })
+    })
+};
+
+export const DeleteStore = (req, res) =>{
+ 
+    Data.serialize(()=>{
+        Data.each("DELETE FROM Store WHERE st_product = ?", [req.params.p_prodkey], (err, row)=>{    
+            if(err){
+                console.log(err);
+            }else{
+                console.log("DELETED");
+            }
+        })
+    })
+};
+
+export const AddStore = (req, res) =>{
+
+    const input = {
+        'p_prodkey': req.body['p_prodkey'][0], 
+        'st_name': req.body['st_name'][0]
+    }
+
+    const sql = "INSERT INTO Store VALUES(?,?)"
+
+    Data.serialize(()=>{
+
+        Data.run(sql, input['p_prodkey'], input['st_name'], (err,row)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.send(row);
+                console.log("ADDED");
+            }
+        })
+    })
+};
+
+export const AddQuantity = (req, res) =>{
+
+    const input = {
+        'p_prodkey': req.body['p_prodkey'][0], 
+        'pq_currstock': req.body['pq_currstock'][0], 
+        'pq_restockdate': req.body['pq_restockdate'][0], 
+        'pq_availability': req.body['pq_availability'][0]
+    }
+
+    const sql = "INSERT INTO ProductQuantity VALUES(?,?,?,?)"
+
+    Data.serialize(()=>{
+
+        Data.run(sql, input['p_prodkey'], input['pq_currstock'], input['pq_restockdate'], input['pq_availability'], (err,row)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.send(row);
+                console.log("ADDED");
+            }
+        })
+    })
+};

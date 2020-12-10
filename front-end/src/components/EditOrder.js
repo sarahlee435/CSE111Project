@@ -33,18 +33,40 @@ class EditOrder extends Component {
 
     onSubmit(){
    
-        const update = {
+        const update1 = {
             "o_orderkey" : this.state.o_orderkey,
-            "c_name": this.state.c_name,
-            "s_name": this.state.s_name,
             "o_totalcost": this.state.o_totalcost,
             "o_orderdate": this.state.o_orderdate,
-            "o_orderstatus": this.state.o_orderstatus,
+            "o_orderstatus": this.state.o_orderstatus
+        }
+
+        axios.put('http://localhost:8080/EditOrder1/', update1)
+            .then(res => console.log(res.data))
+
+        const update2 = {
+            "o_orderkey" : this.state.o_orderkey,
+            "c_name": this.state.c_name
+        }
+
+
+        axios.put('http://localhost:8080/EditOrder2/', update2)
+            .then(res => console.log(res.data))
+        
+        const update3 = {
+            "o_orderkey" : this.state.o_orderkey,
+            "s_name": this.state.s_name
+        }
+    
+        axios.put('http://localhost:8080/EditOrder3/', update3)
+            .then(res => console.log(res.data))
+        
+        const update4 = {
+            "o_orderkey" : this.state.o_orderkey,
             "l_shipdate": this.state.l_shipdate,
             "l_receiptdate": this.state.l_receiptdate
         }
-
-        axios.put('http://localhost:4006/EditOrder/', update)
+    
+        axios.put('http://localhost:8080/EditOrder4/', update4)
             .then(res => console.log(res.data))
 
         this.setState({

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import Table from 'react-bootstrap/Table';
+import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row } from 'react-bootstrap';
                               
@@ -25,7 +26,7 @@ const Products = item => (
     </tr>
 )
 
-class List extends Component{
+class Name extends Component{
     constructor({match}){
     super(match);
         this.state = {
@@ -39,7 +40,7 @@ class List extends Component{
     }
 
     getProducts(){
-        fetch('http://localhost:8080/Products')
+        fetch('http://localhost:8080/ProductName')
             .then(res => res.json())
             .then(result => this.setState({list:result}))
     }
@@ -55,6 +56,25 @@ class List extends Component{
 
         return(
             <Fragment>
+                <div style = {{backgroundColor: "#FFD7D7"}}>
+                    <div style = {{backgroundColor: "#FFBABA"}}>
+                        <Navbar>
+                            <h1>Art Supply Database</h1>
+                            <div className = "collapse navbar-collapse">
+                                <ul className = "navbar-nav ml-auto">
+                                    <li className="navbar-item px-2">
+                                        <Link to="/">Home</Link>
+                                    </li>
+                                    <li className="navbar-item px-2">
+                                        <Link to="/Orders">Orders</Link>
+                                    </li>
+                                    <li className="navbar-item px-2">
+                                        <Link to="/Stores">Stores</Link>
+                                    </li>
+                                </ul>    
+                            </div>
+                        </Navbar>
+                    </div>
                 <div className = 'container'>
                     <h3 style = {{paddingTop: '40px', paddingBottom:'20px'}}>Product Inventory</h3>
                     <div style = {{paddingLeft: '20px'}}>
@@ -63,7 +83,7 @@ class List extends Component{
                         </Row>
                     </div>
                     <Dropdown class='mr-auto'>
-                        <Dropdown.Toggle id="dropdown-custom-components" variant ="info">
+                        <Dropdown.Toggle id="dropdown-custom-components" variant ="primary">
                          Sort By
                         </Dropdown.Toggle>
                             <Dropdown.Menu >
@@ -96,9 +116,10 @@ class List extends Component{
                     </Table>
                     </div>
                 </div>
+                </div>
             </Fragment>
         )
     }
 }
 
-export default List;
+export default Name;

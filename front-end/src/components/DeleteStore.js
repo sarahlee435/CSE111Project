@@ -4,18 +4,25 @@ import axios from 'axios';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class Create extends Component {
-    constructor(props){
-        super(props);
+class DeleteStore extends Component {
+    constructor({match}){
+        super(match);
         this.state = {
-            'p_prodkey': '',
-            'p_name': '',
-            'p_type': '',
-            'p_material': '',
-            'p_brand': '',
-            'p_rating': '',
-            'p_retailprice': ''
+            p_prodkey: match.params.Key,
+            p_name: match.params.Name,
+            p_type: match.params.Type,
+            p_material: match.params.Material,
+            p_brand: match.params.Brand,
+            p_rating: match.params.Rating,
+            p_retailprice: match.params.Price,
+            pq_currstock: match.params.CurrStock,
+            pq_availability: match.params.Available,
+            pq_restockdate: match.params.Restock,
+            st_name: match.params.Store
         }
+        
+        console.log(this.match);
+
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -28,40 +35,28 @@ class Create extends Component {
 
     onSubmit(){
 
-        const newProduct = {
-            "p_prodkey" : this.state.p_prodkey,
-            "p_name": this.state.p_name,
-            "p_type": this.state.p_type,
-            "p_material": this.state.p_material,
-            "p_brand": this.state.p_brand,
-            "p_rating": this.state.p_rating,
-            "p_retailprice": this.state.p_retailprice
-        }
-
-        axios.post('http://localhost:8080/Add', newProduct)
+        axios.delete('http://localhost:8080/Delete/' + this.state.p_prodkey)
             .then(res => console.log(res.data))
 
-        this.setState({
-            'p_name': '',
-            'p_type': '',
-            'p_material': '',
-            'p_brand': '',
-            'p_rating': '',
-            'p_retailprice': ''
-        })
+        axios.delete('http://localhost:8080/DeleteQuantity/' + this.state.p_prodkey)
+            .then(res => console.log(res.data))
+    
+        axios.delete('http://localhost:8080/DeleteStore/' + this.state.p_prodkey)
+            .then(res => console.log(res.data))
+    
+
     }
 
     render() { 
-  
         return ( 
             <Fragment>
-               <div style = {{backgroundColor: "#FFD7D7"}}>
+                <div style = {{backgroundColor: "#FFD7D7"}}>
                     <div style = {{backgroundColor: "#FFBABA"}}>
                         <Navbar>
                             <div className = "collapse navbar-collapse">
                                 <ul className = "navbar-nav mr-auto">
                                     <li className="navbar-item px-2">
-                                        <Link to="/">Back</Link>
+                                        <Link to="/Stores">Back</Link>
                                     </li>
                                 </ul>    
                             </div>
@@ -70,13 +65,15 @@ class Create extends Component {
                  
             
             <div className = 'container' style={{marginTop: 20}}>
-                <h2>Add a new product</h2>
+                <h2>Delete an Existing Product</h2>
+                
+                
                 <form onSubmit={this.onSubmit}>
                     <div className = "form-group">
                         <label>Product Key: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_prodkey'
+                                name='p_prodkey'
                                 value={this.state.p_prodkey}
                                 onChange={this.onChange}
                                 />
@@ -135,9 +132,49 @@ class Create extends Component {
                                 onChange={this.onChange}
                                 />
                     </div>
-                    <div>
-                        <input type="Submit" value="Create Item" className="btn btn-primary"/>
+
+                    <div className = "form-group">
+                        <label>Current Stock: </label>
+                        <input  type="text"
+                                className="form-control"
+                                name = 'pq_currstock'
+                                value={this.state.pq_currstock}
+                                onChange={this.onChange}
+                                />
                     </div>
+
+                    <div className = "form-group">
+                        <label>Restock Date: </label>
+                        <input  type="text"
+                                className="form-control"
+                                name = 'pq_restockdate'
+                                value={this.state.pq_restockdate}
+                                onChange={this.onChange}
+                                />
+                    </div>
+
+                    <div className = "form-group">
+                        <label>Availability: </label>
+                        <input  type="text"
+                                className="form-control"
+                                name = 'pq_availability'
+                                value={this.state.pq_availability}
+                                onChange={this.onChange}
+                                />
+                    </div>
+
+                    <div className = "form-group">
+                        <label>Store: </label>
+                        <input  type="text"
+                                className="form-control"
+                                name = 'st_name'
+                                value={this.state.st_name}
+                                onChange={this.onChange}
+                                />
+                    </div>
+                   
+                    <input type="Submit" value="Delete Item" className="btn btn-primary"/>
+                
                 </form>
             </div>
             </div>
@@ -146,4 +183,4 @@ class Create extends Component {
     }
 }
  
-export default Create;
+export default DeleteStore;
