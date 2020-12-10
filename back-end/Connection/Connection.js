@@ -66,23 +66,71 @@ export const AddProduct = (req, res) =>{
         })
     })
 };
-//This table has the orders,customers,supplies, and even lineitems connected
+
+//This table has the orders, customers, supplies, and lineitems connected
 export const Orders = (req, res) =>{
-    Data.all("SELECT o_orderkey AS key,Customer.c_custkey,s_suppkey,c_name AS customer,s_name AS store,o_totalcost AS total,o_orderdate AS orderdate,o_orderstatus AS status FROM Supplier INNER JOIN Customer ON Orders.o_custkey = Customer.c_custkey INNER JOIN Orders ON Lineitem.l_orderkey = Orders.o_orderkey INNER JOIN Lineitem ON Supplier.s_suppkey = Lineitem.l_suppkey;", (err,row)=>{
+    Data.all("SELECT o_orderkey, c_name, s_name, o_totalcost, o_orderdate, o_orderstatus, l_shipdate, l_receiptdate FROM Supplier, Customer, Orders, Lineitem where l_suppkey = s_suppkey AND l_orderkey = o_orderkey AND c_custkey = o_custkey GROUP BY o_orderkey;", (err,row)=>{
         if(err)
             console.log(err);
         else
             res.send(JSON.stringify(row));    
     })
 };
-//This table has product,product, and product quantity tables
+
+export const EditOrder = (req, res) =>{
+
+    const sql = 'UPDATE Order SET o_orderkey = ?, o_totalcost = ?, o_orderdate = ?, o_orderstatus = ? WHERE o_orderkey = ?'
+    const sql2 = 'UPDATE Customer SET c_name = ? WHERE o_orderkey = ?'
+    const sql3 = 'UPDATE Supplier SET s_name = ? WHERE o_orderkey = ?'
+    const sql4 = 'UPDATE Lineitem SET l_shipdate, l_receiptdate WHERE o_orderkey = ?'
+    
+    Data.serialize(()=>{
+        Data.run(sql, [req.body['o_orderkey'], req.body['o_totalcost'], req.body['o_orderdate'], req.body['o_orderstatus'], req.body['o_orderkey']], (err, row)=>{
+        if(err)
+            console.log(err)
+        else
+           console.log("EDITED")
+        
+    })
+})
+    Data.serialize(()=>{
+        Data.run(sql2, [req.body['c_name'], req.body['o_orderkey']], (err, row)=>{
+        if(err)
+            console.log(err)
+        else
+           console.log("EDITED")
+        
+    })
+})
+    Data.serialize(()=>{
+        Data.run(sql3, [req.body['s_name'], req.body['o_orderkey']], (err, row)=>{
+        if(err)
+            console.log(err)
+        else
+           console.log("EDITED")
+        
+    })
+})
+    Data.serialize(()=>{
+        Data.run(sql4, [req.body['l_shipdate'], req.body['l_receiptdate'], req.body['o_orderkey']], (err, row)=>{
+        if(err)
+            console.log(err)
+        else
+           console.log("EDITED")
+        
+    })
+})
+};
+
+//This table has product, store, and product quantity tables
 export const Store = (req, res) =>{
-    Data.all(" SELECT p_prodkey AS key,p_name AS name,st_name AS store,p_type AS type,p_material AS material,p_brand AS brand,pq_currstock AS stock,pq_availability AS availability,p_rating AS rating,p_retailprice AS price FROM Product INNER JOIN ProductQuantity ON Product.p_prodkey = ProductQuantity.pq_prodkey INNER JOIN Store ON Product.p_prodkey = Store.st_prodkey;", (err,row)=>{
+    Data.all("SELECT p_prodkey, p_name, st_name, p_type, p_material, p_brand, pq_currstock, pq_availability, p_rating, p_retailprice FROM Product, ProductQuantity, Store WHERE p_prodkey = pq_prodkey AND p_prodkey = st_prodkey;", (err,row)=>{
         if(err)
             console.log(err);
         else
             res.send(JSON.stringify(row));    
     })
 };
+
 export default Data;
 

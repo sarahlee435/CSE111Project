@@ -4,20 +4,21 @@ import axios from 'axios';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class Delete extends Component {
+class EditOrder extends Component {
     constructor({match}){
         super(match);
 
         this.state = {
-            p_prodkey: match.params.Key,
-            p_name: match.params.Name,
-            p_type: match.params.Type,
-            p_material: match.params.Material,
-            p_brand: match.params.Brand,
-            p_rating: match.params.Rating,
-            p_retailprice: match.params.Price
+            o_orderkey: match.params.Key,
+            c_name: match.params.Customer,
+            s_name: match.params.Supplier,
+            o_totalcost: match.params.Cost,
+            o_orderdate: match.params.Orderdate,
+            o_orderstatus: match.params.Status,
+            l_shipdate: match.params.Shipdate,
+            l_receiptdate: match.params.Receiptdate
         }
-
+       
         console.log(this.match);
 
         this.onChange = this.onChange.bind(this);
@@ -32,18 +33,29 @@ class Delete extends Component {
 
     onSubmit(){
    
-        const deleteProd = {
-            "p_prodkey" : this.state.p_prodkey,
-            "p_name": this.state.p_name
+        const update = {
+            "o_orderkey" : this.state.o_orderkey,
+            "c_name": this.state.c_name,
+            "s_name": this.state.s_name,
+            "o_totalcost": this.state.o_totalcost,
+            "o_orderdate": this.state.o_orderdate,
+            "o_orderstatus": this.state.o_orderstatus,
+            "l_shipdate": this.state.l_shipdate,
+            "l_receiptdate": this.state.l_receiptdate
         }
-        console.log('{this.state.p_prodkey}');
-        console.log('{this.state.p_name}');
-        axios.delete('http://localhost:4006/Delete/' + this.state.p_prodkey)
+
+        axios.put('http://localhost:4006/EditOrder/', update)
             .then(res => console.log(res.data))
 
         this.setState({
-            'p_prodkey': '',
-            'p_name': '',
+            'o_orderkey': '',
+            'c_name': '',
+            's_name': '',
+            'o_totalcost': '',
+            'o_orderdate': '',
+            'o_orderstatus': '',
+            'l_shipdate': '',
+            'l_receiptdate':''
         })
     }
 
@@ -69,75 +81,84 @@ class Delete extends Component {
                  
             
             <div className = 'container' style={{marginTop: 20}}>
-                <h2>Delete an Existing Product</h2>
+                <h2>Update an Existing Order</h2>
                 
                 
                 <form onSubmit={this.onSubmit}>
                     <div className = "form-group">
-                        <label>Product Key: </label>
+                        <label>Order Key: </label>
                         <input  type="text"
                                 className="form-control"
-                                name='p_prodkey'
-                                value={this.state.p_prodkey}
+                                name='o_orderkey'
+                                value={this.state.o_orderkey}
                                 onChange={this.onChange}
                                 />
                     </div>
                     <div className = "form-group">
-                        <label>Name: </label>
+                        <label>Customer: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_name'
-                                value={this.state.p_name}
+                                name = 'c_name'
+                                value={this.state.c_name}
                                 onChange={this.onChange}
                                 />
                     </div>
                     <div className = "form-group">
-                        <label>Type: </label>
+                        <label>Supplier: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_type'
-                                value={this.state.p_type}
+                                name = 's_name'
+                                value={this.state.s_name}
                                 onChange={this.onChange}
                                 />
                     </div>
                     <div className = "form-group">
-                        <label>Material: </label>
+                        <label>Total Cost: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_material'
-                                value={this.state.p_material}
+                                name = 'o_totalcost'
+                                value={this.state.o_totalcost}
                                 onChange={this.onChange}
                                 />
                     </div>
                     <div className = "form-group">
-                        <label>Brand: </label>
+                        <label>Date Ordered: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_brand'
-                                value={this.state.p_brand}
+                                name = 'o_orderdate'
+                                value={this.state.o_orderdate}
                                 onChange={this.onChange}
                                 />
                     </div>
                     <div className = "form-group">
-                        <label>Rating: </label>
+                        <label>Order Status: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_rating'
-                                value={this.state.p_rating}
+                                name = 'o_orderstatus'
+                                value={this.state.o_orderstatus}
                                 onChange={this.onChange}
                                 />
                     </div>
                     <div className = "form-group">
-                        <label>Price: </label>
+                        <label>Date Shipped: </label>
                         <input  type="text"
                                 className="form-control"
-                                name = 'p_retailprice'
-                                value={this.state.p_retailprice}
+                                name = 'l_shipdate'
+                                value={this.state.l_shipdate}
+                                onChange={this.onChange}
+                                />
+                    </div>
+                    <div className = "form-group">
+                        <label>Date Received: </label>
+                        <input  type="text"
+                                className="form-control"
+                                name = 'l_receiptdate'
+                                value={this.state.l_receiptdate}
                                 onChange={this.onChange}
                                 />
                     </div>
                    
-                    <input type="Submit" value="Delete Item" className="btn btn-primary"/>
+                    <input type="Submit" value="Edit Order" className="btn btn-primary"/>
                 
                 </form>
             </div>
@@ -147,4 +168,4 @@ class Delete extends Component {
     }
 }
  
-export default Delete;
+export default EditOrder;

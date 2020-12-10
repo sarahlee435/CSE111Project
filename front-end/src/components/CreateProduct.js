@@ -55,7 +55,7 @@ class Create extends Component {
   
         return ( 
             <Fragment>
-                <div style = {{backgroundColor: "#FFD7D7"}}>
+               <div style = {{backgroundColor: "#FFD7D7"}}>
                     <div style = {{backgroundColor: "#FFBABA"}}>
                         <Navbar>
                             <h1>Art Supply Database</h1>
@@ -65,7 +65,7 @@ class Create extends Component {
                                         <Link to="/">Home</Link>
                                     </li>
                                     <li className="navbar-item px-2">
-                                        <Link to="/Add">Create</Link>
+                                        <Link to="/Orders">Orders</Link>
                                     </li>
                                 </ul>    
                             </div>

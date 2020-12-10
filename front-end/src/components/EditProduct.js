@@ -69,7 +69,7 @@ class Edit extends Component {
                                         <Link to="/">Home</Link>
                                     </li>
                                     <li className="navbar-item px-2">
-                                        <Link to="/Add">Create</Link>
+                                        <Link to="/Orders">Orders</Link>
                                     </li>
                                 </ul>    
                             </div>

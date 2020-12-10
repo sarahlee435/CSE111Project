@@ -5,6 +5,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row } from 'react-bootstrap';
                               
 const Products = item => (
     <tr>
@@ -56,8 +57,10 @@ class List extends Component{
             <Fragment>
                 <div className = 'container'>
                     <h3 style = {{paddingTop: '40px', paddingBottom:'40px'}}>Product Inventory</h3>
-                   
                     <div>
+                    <Row>
+                    <Link to="/Add"><p>Create New Product</p></Link>
+                    </Row>
                     <Table className = "table table-striped" variant = 'light' bordered responsive>
                         <tr>
                             <th>Key</th>
