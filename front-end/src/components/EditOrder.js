@@ -40,7 +40,7 @@ class EditOrder extends Component {
             "o_orderstatus": this.state.o_orderstatus
         }
 
-        axios.put('http://localhost:8080/EditOrder1/', update1)
+        axios.put('http://localhost:4006/EditOrder1/', update1)
             .then(res => console.log(res.data))
 
         const update2 = {
@@ -49,7 +49,7 @@ class EditOrder extends Component {
         }
 
 
-        axios.put('http://localhost:8080/EditOrder2/', update2)
+        axios.put('http://localhost:4006/EditOrder2/', update2)
             .then(res => console.log(res.data))
         
         const update3 = {
@@ -57,7 +57,7 @@ class EditOrder extends Component {
             "s_name": this.state.s_name
         }
     
-        axios.put('http://localhost:8080/EditOrder3/', update3)
+        axios.put('http://localhost:4006/EditOrder3/', update3)
             .then(res => console.log(res.data))
         
         const update4 = {
@@ -66,7 +66,7 @@ class EditOrder extends Component {
             "l_receiptdate": this.state.l_receiptdate
         }
     
-        axios.put('http://localhost:8080/EditOrder4/', update4)
+        axios.put('http://localhost:4006/EditOrder4/', update4)
             .then(res => console.log(res.data))
 
         this.setState({
@@ -180,7 +180,7 @@ class EditOrder extends Component {
                                 />
                     </div>
                    
-                    <input type="Submit" value="Edit Order" className="btn btn-primary"/>
+                    <input type="Submit" value="Edit Order" className="btn btn-info"/>
                 
                 </form>
             </div>

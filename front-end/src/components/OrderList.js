@@ -1,8 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
                               
@@ -45,7 +43,6 @@ class OrderList extends Component{
     }
 
     render(){
-        const {list} = this.state
 
         return(
             <Fragment>
@@ -72,7 +69,7 @@ class OrderList extends Component{
 
 
                 <div className = 'container'>
-                    <h3 style = {{paddingTop: '40px', paddingBottom:'20px'}}>Orders Received</h3>
+                    <h3 style = {{paddingTop: '40px', paddingBottom:'20px'}}>Orders History</h3>
                    
                     <div>
                     <Table className = "table table-striped" variant = 'light' bordered responsive>

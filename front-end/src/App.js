@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
+import Navbar from 'react-bootstrap/Navbar';
 
 import Stores from "./components/StoreList";
 import Orders from "./components/OrderList";
@@ -43,7 +44,11 @@ class App extends Component {
                     <Route path="/ProductRating" component={ProductRating} />
                     <Route path="/ProductPrice" component={ProductPrice} />
 
-                
+                    <div style = {{backgroundColor: "#FFBABA"}}>
+                        <Navbar>
+                            CSE 111 Project
+                        </Navbar>
+                    </div>
                 </div>
             </Router>
         );

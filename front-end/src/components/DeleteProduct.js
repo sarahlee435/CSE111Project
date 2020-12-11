@@ -32,11 +32,6 @@ class Delete extends Component {
 
     onSubmit(){
    
-        const deleteProd = {
-            "p_prodkey" : this.state.p_prodkey,
-            "p_name": this.state.p_name
-        }
-       
         axios.delete('http://localhost:8080/Delete/' + this.state.p_prodkey)
             .then(res => console.log(res.data))
 
@@ -133,7 +128,7 @@ class Delete extends Component {
                                 />
                     </div>
                    
-                    <input type="Submit" value="Delete Item" className="btn btn-primary"/>
+                    <input type="Submit" value="Delete Item" className="btn btn-info"/>
                 
                 </form>
             </div>

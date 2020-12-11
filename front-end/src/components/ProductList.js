@@ -1,6 +1,5 @@
 import React, { Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import Table from 'react-bootstrap/Table';
@@ -51,7 +50,6 @@ class List extends Component{
     }
 
     render(){
-        const {list} = this.state
 
         return(
             <Fragment>

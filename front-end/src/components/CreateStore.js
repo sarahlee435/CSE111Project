@@ -208,7 +208,7 @@ class CreateStore extends Component {
                                 />
                     </div>
                    
-                    <input type="Submit" value="Add Item" className="btn btn-primary"/>
+                    <input type="Submit" value="Add Item" className="btn btn-info"/>
                 
                 </form>
             </div>

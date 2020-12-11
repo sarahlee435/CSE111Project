@@ -136,7 +136,7 @@ class Create extends Component {
                                 />
                     </div>
                     <div>
-                        <input type="Submit" value="Create Item" className="btn btn-primary"/>
+                        <input type="Submit" value="Create Item" className="btn btn-info"/>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,5 @@
 import React, { Component, Fragment} from 'react';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import Table from 'react-bootstrap/Table';
@@ -52,7 +51,6 @@ class Brand extends Component{
     }
 
     render(){
-        const {list} = this.state
 
         return(
             <Fragment>
@@ -83,7 +81,7 @@ class Brand extends Component{
                         </Row>
                     </div>
                     <Dropdown class='mr-auto'>
-                        <Dropdown.Toggle id="dropdown-custom-components" variant ="primary">
+                        <Dropdown.Toggle id="dropdown-custom-components" variant ="info">
                          Sort By
                         </Dropdown.Toggle>
                             <Dropdown.Menu >

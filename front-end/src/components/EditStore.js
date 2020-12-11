@@ -208,7 +208,7 @@ class EditStore extends Component {
                                 />
                     </div>
                    
-                    <input type="Submit" value="Edit Item" className="btn btn-primary"/>
+                    <input type="Submit" value="Edit Item" className="btn btn-info"/>
                 
                 </form>
             </div>
